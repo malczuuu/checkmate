@@ -9,7 +9,7 @@ junit = "6.0.3"
 kafka-clients = "4.2.0"
 kotlin = "2.3.10"
 spotless = "8.3.0"
-spring-boot = "4.0.3"
+spring-boot = "4.0.4"
 testcontainers = "2.0.4"
 
 [plugins]
