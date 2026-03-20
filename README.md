@@ -53,6 +53,40 @@ Extensions for the Spring test context that automate the setup of in-process Kaf
 
 ## Getting Started
 
+Project is not published to a public repository. To access the module, generate a GitHub personal access token with
+`read:packages` scope and configure your Gradle project as follows.
+
+```properties
+# 
+# ~/.gradle/gradle.properties - global Gradle properties to avoid accidental commit of credentials to version control
+#
+gpr.user={your GitHub username}
+gpr.token={your GitHub personal access token with read:packages scope}
+```
+
+```kotlin
+// build.gradle.kts
+//
+repositories {
+    mavenCentral()
+    maven {
+        url = uri("https://maven.pkg.github.com/malczuuu/checkmate")
+        credentials {
+            username = project.findProperty("gpr.user")?.toString() ?: System.getenv("GPR_USER")
+            password = project.findProperty("gpr.token")?.toString() ?: System.getenv("GPR_TOKEN")
+        }
+    }
+}
+
+// verify CHANGELOG.md for latest version
+dependencies {
+    testImplementation("io.github.malczuuu:checkmate-annotation:0.0.1")
+    testImplementation("io.github.malczuuu:checkmate-archunit:0.0.1")
+    testImplementation("io.github.malczuuu:checkmate-container:0.0.1")
+    testImplementation("io.github.malczuuu:checkmate-spring-kafka:0.0.1")
+}
+```
+
 Building requires Java 25. Usage requires Java 17 or later. Written in Kotlin but works with Java as well.
 
 ```kotlin
