@@ -11,7 +11,10 @@ plugins {
 
 rootProject.name = "checkmate"
 
-include(":checkmate-spring")
+include(":checkmate-annotation")
+include(":checkmate-archunit")
+include(":checkmate-container")
+include(":checkmate-spring-kafka")
 
 /**
  * Duplicate project names have some side effects. This function verifies that there are no duplicate project names in

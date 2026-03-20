@@ -10,9 +10,15 @@ plugins {
 }
 
 dependencies {
-    jacocoAggregation(project(":checkmate-spring"))
+    jacocoAggregation(project(":checkmate-annotation"))
+    jacocoAggregation(project(":checkmate-archunit"))
+    jacocoAggregation(project(":checkmate-container"))
+    jacocoAggregation(project(":checkmate-spring-kafka"))
 
-    testReportAggregation(project(":checkmate-spring"))
+    testReportAggregation(project(":checkmate-annotation"))
+    testReportAggregation(project(":checkmate-archunit"))
+    testReportAggregation(project(":checkmate-container"))
+    testReportAggregation(project(":checkmate-spring-kafka"))
 }
 
 reporting {
@@ -37,18 +43,14 @@ spotless {
         lineEndings = LineEnding.UNIX
     }
 
-    sql {
-        target("**/src/main/resources/**/*.sql")
-
-        dbeaver()
-        endWithNewline()
-        lineEndings = LineEnding.UNIX
-    }
-
     kotlin {
         target("**/src/**/*.kt")
 
-        ktlint("1.8.0").editorConfigOverride(mapOf("max_line_length" to "120"))
+        ktfmt("0.61").googleStyle().configure {
+            it.setMaxWidth(100)
+            it.setContinuationIndent(4)
+            it.setRemoveUnusedImports(true)
+        }
         endWithNewline()
         lineEndings = LineEnding.UNIX
     }

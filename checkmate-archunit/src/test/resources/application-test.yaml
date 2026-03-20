@@ -1,0 +1,12 @@
+spring:
+  main:
+    banner-mode: off
+
+checkmate:
+  kafka:
+    topic:
+      player-events: checkmate-app-player-events
+
+logging:
+  level:
+    io.github.checkmate: DEBUG
