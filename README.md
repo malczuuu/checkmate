@@ -8,6 +8,14 @@ Each module is independently consumable and covers a distinct concern:
 - Testcontainers helpers,
 - and Spring/Kafka test utilities.
 
+## Table of Contents
+
+- [`checkmate-annotation`](#checkmate-annotation)
+- [`checkmate-archunit`](#checkmate-archunit)
+- [`checkmate-container`](#checkmate-container)
+- [`checkmate-spring-kafka`](#checkmate-spring-kafka)
+- [Getting Started](#getting-started)
+
 ## `checkmate-annotation`
 
 Marker annotations used across the other modules and by consumer projects.
@@ -43,7 +51,7 @@ Extensions for the Spring test context that automate the setup of in-process Kaf
 - **`@TestListener`** - annotate a `TestKafkaConsumer` field in your test class with the target
   topic name; the framework registers the consumer bean and injects it automatically.
 
-## Getting started
+## Getting Started
 
 Building requires Java 25. Usage requires Java 17 or later. Written in Kotlin but works with Java as well.
 
