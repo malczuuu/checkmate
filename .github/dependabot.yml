@@ -1,10 +1,6 @@
 version: 2
 updates:
 
-  #
-  # Configuration for "java" branch.
-  #
-
   - package-ecosystem: "gradle"
     directory: "/"
     schedule:
@@ -17,10 +13,6 @@ updates:
       - dependency-name: "*"
         update-types:
           - "version-update:semver-major"
-    groups:
-      gradle:
-        patterns:
-          - "*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -28,7 +20,3 @@ updates:
       interval: "monthly"
     target-branch: main
     open-pull-requests-limit: 10
-    groups:
-      github-actions:
-        patterns:
-          - "*"
