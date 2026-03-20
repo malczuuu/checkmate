@@ -1,6 +1,7 @@
 plugins {
     id("internal.kotlin-library-convention")
     id("internal.jacoco-convention")
+    id("internal.publishing-convention")
 }
 
 dependencies {
