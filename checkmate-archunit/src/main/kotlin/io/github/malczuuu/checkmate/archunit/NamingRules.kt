@@ -21,13 +21,15 @@ object NamingRules {
   @JvmField
   val TEST_CLASSES_MUST_BE_PLURAL: ArchRule =
       ArchRuleDefinition.classes()
-          .that().containAnyMethodsThat(isTestMethod())
-          .and().areNotNestedClasses()
+          .that()
+          .containAnyMethodsThat(isTestMethod())
+          .and()
+          .areNotNestedClasses()
           .should()
           .haveSimpleNameEndingWith("Tests")
 
-    private fun isTestMethod(): DescribedPredicate<JavaMethod> =
-        DescribedPredicate.describe("are annotated with @Test or @ArchTest") {
-            it.isAnnotatedWith(Test::class.java) || it.isAnnotatedWith(ArchTest::class.java)
-        }
+  private fun isTestMethod(): DescribedPredicate<JavaMethod> =
+      DescribedPredicate.describe("are annotated with @Test or @ArchTest") {
+        it.isAnnotatedWith(Test::class.java) || it.isAnnotatedWith(ArchTest::class.java)
+      }
 }
