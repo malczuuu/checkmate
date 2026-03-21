@@ -1,4 +1,4 @@
-name: Publish Library on Tag
+name: Gradle Publish
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
             -Dorg.gradle.daemon=false
             -Dorg.gradle.parallel=false
             -Dorg.gradle.workers.max=1
-          GPR_USER: ${{ github.actor }}
+          GPR_USER: ${{ secrets.GPR_USER }}
           GPR_TOKEN: ${{ secrets.GPR_TOKEN }}
         run: |
           VERSION="${GITHUB_REF_NAME#v}"  # removes leading 'v' from tag name
