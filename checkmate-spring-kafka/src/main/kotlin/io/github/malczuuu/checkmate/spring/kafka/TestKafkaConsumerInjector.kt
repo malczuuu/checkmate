@@ -1,6 +1,7 @@
 package io.github.malczuuu.checkmate.spring.kafka
 
 import io.github.malczuuu.checkmate.annotation.TestListener
+import io.github.malczuuu.checkmate.spring.kafka.LocalUtils.isKafkaPresent
 import org.springframework.beans.factory.getBean
 import org.springframework.test.context.TestContext
 import org.springframework.test.context.TestExecutionListener
@@ -25,6 +26,9 @@ internal open class TestKafkaConsumerInjector : TestExecutionListener {
    *   context.
    */
   override fun prepareTestInstance(testContext: TestContext) {
+    if (!isKafkaPresent()) {
+      return
+    }
     val testInstance = testContext.testInstance
     val applicationContext = testContext.applicationContext
 

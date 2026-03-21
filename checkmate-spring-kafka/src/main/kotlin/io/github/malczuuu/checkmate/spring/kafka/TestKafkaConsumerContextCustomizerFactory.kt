@@ -1,6 +1,7 @@
 package io.github.malczuuu.checkmate.spring.kafka
 
 import io.github.malczuuu.checkmate.annotation.TestListener
+import io.github.malczuuu.checkmate.spring.kafka.LocalUtils.isKafkaPresent
 import org.springframework.test.context.ContextConfigurationAttributes
 import org.springframework.test.context.ContextCustomizer
 import org.springframework.test.context.ContextCustomizerFactory
@@ -27,6 +28,9 @@ internal open class TestKafkaConsumerContextCustomizerFactory : ContextCustomize
       testClass: Class<*>,
       configAttributes: List<ContextConfigurationAttributes>,
   ): ContextCustomizer? {
+    if (!isKafkaPresent()) {
+      return null
+    }
     if (collectTopicAnnotatedFieldTypes(testClass).isEmpty()) {
       return null
     }

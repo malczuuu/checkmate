@@ -1,9 +1,12 @@
 package io.github.malczuuu.checkmate.spring.kafka
 
 import java.time.Duration
+import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.awaitility.Awaitility.await
 import org.springframework.boot.autoconfigure.AutoConfiguration
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+import org.springframework.boot.kafka.autoconfigure.KafkaAutoConfiguration
 import org.springframework.context.ApplicationListener
 import org.springframework.context.annotation.Bean
 import org.springframework.context.event.ContextRefreshedEvent
@@ -18,6 +21,7 @@ import org.springframework.kafka.config.KafkaListenerEndpointRegistry
  * running and has at least one assigned partition.
  */
 @AutoConfiguration
+@ConditionalOnClass(KafkaAutoConfiguration::class, KafkaConsumer::class)
 class KafkaTestAutoConfiguration {
 
   /**
