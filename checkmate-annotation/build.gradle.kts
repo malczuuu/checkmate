@@ -5,10 +5,11 @@ plugins {
 }
 
 dependencies {
-    api(libs.junit.jupiter)
+    compileOnly(libs.junit.jupiter)
 
     testImplementation(project(":checkmate-archunit"))
-
+    testImplementation(libs.archunit)
+    testImplementation(libs.junit.jupiter)
     testImplementation(libs.kotlin.test.junit5)
     testRuntimeOnly(libs.junit.platform.launcher)
 }
