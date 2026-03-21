@@ -1,6 +1,7 @@
 package io.github.malczuuu.checkmate.archunit
 
 import com.tngtech.archunit.base.DescribedPredicate
+import com.tngtech.archunit.core.domain.JavaMethod
 import com.tngtech.archunit.junit.ArchTest
 import com.tngtech.archunit.lang.ArchRule
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition
@@ -20,12 +21,13 @@ object NamingRules {
   @JvmField
   val TEST_CLASSES_MUST_BE_PLURAL: ArchRule =
       ArchRuleDefinition.classes()
-          .that()
-          .containAnyMethodsThat(
-              DescribedPredicate.describe("are annotated with @Test or @ArchTest") {
-                it.isAnnotatedWith(Test::class.java) || it.isAnnotatedWith(ArchTest::class.java)
-              }
-          )
+          .that().containAnyMethodsThat(isTestMethod())
+          .and().areNotNestedClasses()
           .should()
           .haveSimpleNameEndingWith("Tests")
+
+    private fun isTestMethod(): DescribedPredicate<JavaMethod> =
+        DescribedPredicate.describe("are annotated with @Test or @ArchTest") {
+            it.isAnnotatedWith(Test::class.java) || it.isAnnotatedWith(ArchTest::class.java)
+        }
 }
