@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog], and this project adheres to [Semantic Versioning][semver].
 
+## [Unreleased]
+
+## [0.0.2] - 2026-03-21
+
+### Changed
+
+- Make dependencies optional.
+- Use autoconfiguration and in-code guards for class presence.
+
 ## [0.0.1] - 2026-03-20
 
 ### Added
