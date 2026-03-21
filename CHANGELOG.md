@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 ## [Unreleased]
 
+## [0.0.3] - 2026-03-21
+
+### Changed
+
+- Add `@JvmField` to `NamingRules.TEST_CLASSES_MUST_BE_PLURAL`.
+- Exclude nested classes from the `NamingRules.TEST_CLASSES_MUST_BE_PLURAL` rule.
+
 ## [0.0.2] - 2026-03-21
 
 ### Changed
