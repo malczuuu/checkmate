@@ -17,6 +17,7 @@ object NamingRules {
    * An [ArchRule] that asserts every class containing at least one method annotated with [Test] or
    * [ArchTest] has a simple name ending with `"Tests"` (plural form) rather than `"Test"`.
    */
+  @JvmField
   val TEST_CLASSES_MUST_BE_PLURAL: ArchRule =
       ArchRuleDefinition.classes()
           .that()
