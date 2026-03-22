@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 ## [Unreleased]
 
+## [0.0.4] - 2026-03-22
+
+### Changed
+
+- Transition project from Kotlin to Java as a result of experimentation and preference.
+
 ## [0.0.3] - 2026-03-21
 
 ### Changed
