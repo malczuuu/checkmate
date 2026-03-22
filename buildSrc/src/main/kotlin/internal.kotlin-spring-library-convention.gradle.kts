@@ -1,7 +1,6 @@
 plugins {
-    id("internal.kotlin-convention")
+    id("internal.kotlin-library-convention")
     id("org.jetbrains.kotlin.plugin.spring")
-    id("java-library")
 }
 
 allOpen {
