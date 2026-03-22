@@ -2,7 +2,7 @@
 
 ## Quick orientation
 
-Multi-module Kotlin/Gradle test toolkit for Java/Kotlin projects.
+Multi-module test toolkit for Spring Boot projects.
 
 - `:checkmate-archunit` defines shared architecture rules.
 - `:checkmate-annotation` exposes marker annotations used by other modules.
@@ -20,6 +20,7 @@ Multi-module Kotlin/Gradle test toolkit for Java/Kotlin projects.
 
 - Test classes with `@Test`/`@ArchTest` must end with `Tests` (enforced by ArchUnit in each module test suite).
 - Container-gated tests use `@ContainerTest` tag (`testcontainers`); tag exclusion is automatic when disabled.
+- Each package has `package-info.java` with a description and `@NullMarked` annotation for JSpecify integration.
 
 ## Integration points and dependencies
 

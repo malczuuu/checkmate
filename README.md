@@ -1,7 +1,7 @@
 # Checkmate Project
 
-A multi-module Kotlin/Gradle toolkit that provides reusable test utilities for Java and Kotlin Spring Boot projects.
-Each module is independently consumable and covers a distinct concern:
+A multi-module toolkit that provides reusable test utilities for Java and Kotlin Spring Boot projects. Each module is
+independently consumable and covers a distinct concern:
 
 - shared architecture rules,
 - marker annotations,
@@ -55,7 +55,7 @@ dependencies {
 }
 ```
 
-Building requires Java 25. Usage requires Java 17 or later. Written in Kotlin but works with Java as well.
+Building requires Java 25. Usage requires Java 17 or later.
 
 ```kotlin
 @ContainerTest

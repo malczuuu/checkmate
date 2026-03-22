@@ -1,5 +1,6 @@
 plugins {
-    id("internal.kotlin-library-convention")
+    id("internal.errorprone-convention")
+    id("internal.java-library-convention")
     id("internal.jacoco-convention")
     id("internal.publishing-convention")
 }
@@ -10,6 +11,8 @@ dependencies {
 
     testImplementation(libs.archunit)
     testImplementation(libs.junit.jupiter)
-    testImplementation(libs.kotlin.test.junit5)
     testRuntimeOnly(libs.junit.platform.launcher)
+
+    errorprone(libs.errorprone.core)
+    errorprone(libs.nullaway)
 }

@@ -3,31 +3,30 @@
 #
 [versions]
 archunit = "1.4.1"
+errorprone = "2.48.0"
+errorprone-plugin = "5.1.0"
 idea-ext = "1.4.1"
 jackson = "3.1.0"
 junit = "6.0.3"
 kafka-clients = "4.2.0"
-kotlin = "2.3.20"
+nullaway = "0.13.1"
 spotless = "8.4.0"
 spring-boot = "4.0.4"
 testcontainers = "2.0.4"
 
 [plugins]
+errorprone = { id = "net.ltgt.errorprone", version.ref = "errorprone-plugin" }
 idea-ext = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "idea-ext" }
-kotlin-jpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 
 [libraries]
 archunit = { module = "com.tngtech.archunit:archunit-junit5", version.ref = "archunit" }
-jackson-module-kotlin = { module = "tools.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit" }
+errorprone-core = { module = "com.google.errorprone:error_prone_core", version.ref = "errorprone" }
 kafka-clients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka-clients" }
-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
-kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
+nullaway = { module = "com.uber.nullaway:nullaway", version.ref = "nullaway" }
 spring-boot-starter-kafka = { module = "org.springframework.boot:spring-boot-starter-kafka", version.ref = "spring-boot" }
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
 spring-boot-starter-jackson = { module = "org.springframework.boot:spring-boot-starter-jackson", version.ref = "spring-boot" }

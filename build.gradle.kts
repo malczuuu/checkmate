@@ -1,5 +1,4 @@
 import com.diffplug.spotless.LineEnding
-import org.gradle.kotlin.dsl.project
 
 plugins {
     id("internal.common-convention")
