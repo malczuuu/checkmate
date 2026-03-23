@@ -6,7 +6,7 @@ archunit = "1.4.1"
 errorprone = "2.48.0"
 errorprone-plugin = "5.1.0"
 idea-ext = "1.4.1"
-jackson = "3.1.0"
+jspecify = "1.0.0"
 junit = "6.0.3"
 kafka-clients = "4.2.0"
 nullaway = "0.13.1"
@@ -24,6 +24,7 @@ spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 archunit = { module = "com.tngtech.archunit:archunit-junit5", version.ref = "archunit" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit" }
+jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
 errorprone-core = { module = "com.google.errorprone:error_prone_core", version.ref = "errorprone" }
 kafka-clients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka-clients" }
 nullaway = { module = "com.uber.nullaway:nullaway", version.ref = "nullaway" }

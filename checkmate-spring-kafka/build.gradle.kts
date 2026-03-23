@@ -10,6 +10,7 @@ dependencies {
 
     api(project(":checkmate-annotation"))
     api(project(":checkmate-container"))
+    api(libs.jspecify)
 
     compileOnly(libs.kafka.clients)
     compileOnly(libs.spring.boot.starter.kafka)

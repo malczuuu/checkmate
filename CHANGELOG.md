@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 ## [Unreleased]
 
+### Added
+
+- Add explicit dependency to JSpecify.
+
 ## [0.0.5] - 2026-03-23
 
 ### Added

@@ -6,6 +6,8 @@ plugins {
 }
 
 dependencies {
+    api(libs.jspecify)
+
     compileOnly(libs.junit.jupiter)
 
     testImplementation(project(":checkmate-archunit"))

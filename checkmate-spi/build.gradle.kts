@@ -6,6 +6,8 @@ plugins {
 }
 
 dependencies {
+    api(libs.jspecify)
+
     compileOnly(libs.junit.jupiter)
     compileOnly(libs.testcontainers.junit.jupiter)
     compileOnly(libs.spring.boot.testcontainers)

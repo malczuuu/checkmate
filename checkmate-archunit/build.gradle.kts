@@ -6,6 +6,8 @@ plugins {
 }
 
 dependencies {
+    api(libs.jspecify)
+
     compileOnly(libs.archunit)
     compileOnly(libs.junit.jupiter)
 

@@ -2,8 +2,9 @@ package io.github.malczuuu.checkmate.container.plugin;
 
 import io.github.malczuuu.checkmate.spi.ImageNamePlugin;
 import java.util.Optional;
+import org.jspecify.annotations.NullMarked;
 
-/** Test plugin C - same priority as B but different service support. */
+@NullMarked
 public class PluginNo2 implements ImageNamePlugin {
 
   @Override
