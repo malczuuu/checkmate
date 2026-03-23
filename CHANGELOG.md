@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 ## [Unreleased]
 
+## [0.0.5] - 2026-03-23
+
+### Added
+
+- Add `ImageNamePlugin` SPI for customizing container image names.
+
 ## [0.0.4] - 2026-03-22
 
 ### Changed
