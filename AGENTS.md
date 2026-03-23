@@ -21,6 +21,8 @@ Multi-module test toolkit for Spring Boot projects.
 - Test classes with `@Test`/`@ArchTest` must end with `Tests` (enforced by ArchUnit in each module test suite).
 - Container-gated tests use `@ContainerTest` tag (`testcontainers`); tag exclusion is automatic when disabled.
 - Each package has `package-info.java` with a description and `@NullMarked` annotation for JSpecify integration.
+- Test method names should follow the givenThis_whenThis_thenThis convention (e.g. `givenX_whenY_thenZ`) to keep tests
+  descriptive and consistent across the project.
 
 ## Integration points and dependencies
 
