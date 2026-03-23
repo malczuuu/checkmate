@@ -12,7 +12,7 @@ import org.springframework.kafka.listener.MessageListenerContainer;
  * <p>Call this in {@code @BeforeAll} to prevent tests from running before the application's Kafka
  * consumer has rebalanced and is ready to receive messages.
  */
-public final class KafkaTestUtils {
+final class KafkaTestUtils {
 
   private KafkaTestUtils() {}
 
@@ -21,11 +21,27 @@ public final class KafkaTestUtils {
    *
    * @param registry the KafkaListenerEndpointRegistry to check
    */
-  public static void awaitAssignment(KafkaListenerEndpointRegistry registry) {
+  static void awaitAssignment(KafkaListenerEndpointRegistry registry) {
     await()
         .atMost(Duration.ofSeconds(15))
         .pollInterval(Duration.ofMillis(200))
         .until(() -> checkPartitionsAssignment(registry));
+  }
+
+  /**
+   * Checks whether the Kafka client library is present on the classpath by attempting to load a
+   * core class.
+   *
+   * @return {@code true} if the class is found, or {@code false} if a {@code
+   *     ClassNotFoundException} is thrown
+   */
+  static boolean isKafkaPresent() {
+    try {
+      Class.forName("org.apache.kafka.clients.consumer.KafkaConsumer");
+      return true;
+    } catch (ClassNotFoundException e) {
+      return false;
+    }
   }
 
   private static boolean checkPartitionsAssignment(KafkaListenerEndpointRegistry registry) {

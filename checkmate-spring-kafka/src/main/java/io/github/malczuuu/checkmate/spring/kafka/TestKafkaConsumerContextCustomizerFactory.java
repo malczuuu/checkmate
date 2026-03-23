@@ -1,6 +1,6 @@
 package io.github.malczuuu.checkmate.spring.kafka;
 
-import static io.github.malczuuu.checkmate.spring.kafka.LocalUtils.isKafkaPresent;
+import static io.github.malczuuu.checkmate.spring.kafka.KafkaTestUtils.isKafkaPresent;
 
 import io.github.malczuuu.checkmate.annotation.TestListener;
 import java.lang.reflect.Field;

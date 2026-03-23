@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 - Add explicit dependency to JSpecify.
 
+### Changed
+
+- Hide internal `KafkaTestUtils` class (by making it `package-private`).
+
 ## [0.0.5] - 2026-03-23
 
 ### Added
