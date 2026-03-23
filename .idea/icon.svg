@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="800px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-260.000000, -2719.000000)">
+            <g transform="translate(56.000000, 160.000000)">
+                <rect x="204" y="2559" width="20" height="20" fill="#FFFFFF"/>
+                <path d="M214,2573 L218,2573 L218,2569 L214,2569 L214,2573 Z
+                         M210,2569 L214,2569 L214,2565 L210,2565 L210,2569 Z
+                         M222,2565 L218,2565 L218,2569 L222,2569 L222,2573 L218,2573
+                         L218,2577 L214,2577 L214,2573 L210,2573 L210,2577
+                         L206,2577 L206,2573 L210,2573 L210,2569 L206,2569
+                         L206,2565 L210,2565 L210,2561 L214,2561 L214,2565
+                         L218,2565 L218,2561 L222,2561 L222,2565 Z"
+                      fill="#000000"/>
+            </g>
+        </g>
+    </g>
+</svg>
