@@ -14,6 +14,7 @@ rootProject.name = "checkmate"
 include(":checkmate-annotation")
 include(":checkmate-archunit")
 include(":checkmate-container")
+include(":checkmate-spi")
 include(":checkmate-spring-kafka")
 
 /**

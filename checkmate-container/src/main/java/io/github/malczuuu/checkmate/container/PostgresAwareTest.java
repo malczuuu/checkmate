@@ -10,11 +10,15 @@ import org.testcontainers.postgresql.PostgreSQLContainer;
  */
 public interface PostgresAwareTest {
 
+  /** The default version of Postgres to be used in the container. */
+  String POSTGRES_VERSION = "postgres:18.3-alpine";
+
   /**
    * <strong>Must not be accessed directly by test code.</strong> To be used by test framework only.
    */
   @Container
   @ServiceConnection
   @SuppressWarnings("resource")
-  PostgreSQLContainer postgresContainer = new PostgreSQLContainer("postgres:18.3-alpine");
+  PostgreSQLContainer postgresContainer =
+      new PostgreSQLContainer(ImageNameLoader.getImageName("postgres", POSTGRES_VERSION));
 }

@@ -6,8 +6,6 @@ plugins {
 }
 
 dependencies {
-    api(project(":checkmate-spi"))
-
     compileOnly(libs.junit.jupiter)
     compileOnly(libs.testcontainers.junit.jupiter)
     compileOnly(libs.spring.boot.testcontainers)

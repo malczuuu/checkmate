@@ -112,6 +112,35 @@ Boot test class is enough for Spring auto-configuration to pick up the container
 
 Container-gated tests must be tagged with `@ContainerTest` (from `checkmate-annotation`).
 
+By default, the interfaces above use the image names shown in the table. If you need to pull images from a private
+registry mirror or pin a different version, implement the `ImageNamePlugin` SPI and register it via the standard
+Java `ServiceLoader` mechanism.
+
+1. Implement the interface.
+
+   ```java
+   public class MirrorRegistryPlugin implements ImageNamePlugin {
+   
+     @Override
+     public Optional<String> getImageName(String service) {
+       return switch (service) {
+         case "kafka" -> Optional.of("registry.example.com/mirror/apache/kafka:4.2.0");
+         case "postgres" -> Optional.of("registry.example.com/mirror/postgres:18.3-alpine");
+         default -> Optional.empty();
+       };
+     }
+   }
+   ```
+
+2. Register the implementation.
+
+   Create the file `src/test/resources/META-INF/services/io.github.malczuuu.checkmate.spi.ImageNamePlugin`
+   with the fully-qualified class name of your implementation:
+
+   ```
+   com.example.MirrorRegistryPlugin
+   ```
+
 ## `checkmate-spring-kafka`
 
 Extensions for the Spring test context that automate the setup of in-process Kafka consumers during integration tests.
@@ -123,7 +152,7 @@ Extensions for the Spring test context that automate the setup of in-process Kaf
 ## Maintenance
 
 1. Releases are published to GitHub Packages on tags following the `v{version}` pattern, e.g. `v0.0.1`.
-2. Make sure to configure the `GPR_USER` and `GPR_TOKEN` secrets if tokens expire at ([link][repository-secrets]). Use 
+2. Make sure to configure the `GPR_USER` and `GPR_TOKEN` secrets if tokens expire at ([link][repository-secrets]). Use
    `repo` and `write:packages` scopes.
 
 [repository-secrets]: https://github.com/malczuuu/checkmate/settings/secrets/actions
