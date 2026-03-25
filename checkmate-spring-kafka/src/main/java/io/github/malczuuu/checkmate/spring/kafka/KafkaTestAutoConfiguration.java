@@ -14,7 +14,6 @@ import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
  * reliable test execution.
  */
 @AutoConfiguration
-@ConditionalOnBean(KafkaListenerEndpointRegistry.class)
 public final class KafkaTestAutoConfiguration {
 
   /**
@@ -24,6 +23,7 @@ public final class KafkaTestAutoConfiguration {
   public KafkaTestAutoConfiguration() {}
 
   @Bean
+  @ConditionalOnBean(KafkaListenerEndpointRegistry.class)
   ApplicationListener<ContextRefreshedEvent> kafkaAssignmentAwaiter(
       KafkaListenerEndpointRegistry registry) {
     return event -> KafkaTestUtils.awaitAssignment(registry);
