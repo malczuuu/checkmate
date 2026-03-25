@@ -6,9 +6,12 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 ## [Unreleased]
 
+## [0.0.6] - 2026-03-25
+
 ### Added
 
 - Add explicit dependency to JSpecify.
+- Add `@MongoAwareTest`.
 
 ### Changed
 

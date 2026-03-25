@@ -48,11 +48,11 @@ repositories {
 
 // verify CHANGELOG.md for latest version
 dependencies {
-    testImplementation("io.github.malczuuu:checkmate-annotation:0.0.5")
-    testImplementation("io.github.malczuuu:checkmate-archunit:0.0.5")
-    testImplementation("io.github.malczuuu:checkmate-container:0.0.5")
-    testImplementation("io.github.malczuuu:checkmate-spi:0.0.5")
-    testImplementation("io.github.malczuuu:checkmate-spring-kafka:0.0.5")
+    testImplementation("io.github.malczuuu:checkmate-annotation:0.0.6")
+    testImplementation("io.github.malczuuu:checkmate-archunit:0.0.6")
+    testImplementation("io.github.malczuuu:checkmate-container:0.0.6")
+    testImplementation("io.github.malczuuu:checkmate-spi:0.0.6")
+    testImplementation("io.github.malczuuu:checkmate-spring-kafka:0.0.6")
 }
 ```
 
