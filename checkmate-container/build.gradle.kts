@@ -13,6 +13,7 @@ dependencies {
     compileOnly(libs.testcontainers.junit.jupiter)
     compileOnly(libs.spring.boot.testcontainers)
     compileOnly(libs.testcontainers.kafka)
+    compileOnly(libs.testcontainers.mongodb)
     compileOnly(libs.testcontainers.postgresql)
 
     testImplementation(project(":checkmate-archunit"))
