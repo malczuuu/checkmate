@@ -16,6 +16,7 @@ independently consumable and covers a distinct concern:
 - [`checkmate-annotation`](#checkmate-annotation)
 - [`checkmate-archunit`](#checkmate-archunit)
 - [`checkmate-container`](#checkmate-container)
+- [`checkmate-spi`](#checkmate-spi)
 - [`checkmate-spring-kafka`](#checkmate-spring-kafka)
 
 ## Getting Started
@@ -109,38 +110,48 @@ Boot test class is enough for Spring auto-configuration to pick up the container
 | Interface           | Container image        |
 |---------------------|------------------------|
 | `KafkaAwareTest`    | `apache/kafka:4.2.0`   |
+| `MongoAwareTest`    | `mongo:8.2-alpine`     |
 | `PostgresAwareTest` | `postgres:18.3-alpine` |
 
 Container-gated tests must be tagged with `@ContainerTest` (from `checkmate-annotation`).
 
-By default, the interfaces above use the image names shown in the table. If you need to pull images from a private
-registry mirror or pin a different version, implement the `ImageNamePlugin` SPI and register it via the standard
-Java `ServiceLoader` mechanism.
+By default, the interfaces above use the image names shown in the table. Image resolution can be overridden via the
+`ImageNamePlugin` SPI - see [`checkmate-spi`](#checkmate-spi).
 
-1. Implement the interface.
+## `checkmate-spi`
+
+Defines the `ImageNamePlugin` SPI that allows consumer projects to override the Docker image name used by
+`checkmate-container` interfaces. Typical use cases include pulling from a private registry mirror or pinning a
+different image version without forking the library.
+
+1. Implement the interface in your test sources.
 
    ```java
    public class MirrorRegistryPlugin implements ImageNamePlugin {
-   
+
      @Override
      public Optional<String> getImageName(String service) {
        return switch (service) {
-         case "kafka" -> Optional.of("registry.example.com/mirror/apache/kafka:4.2.0");
+         case "kafka"    -> Optional.of("registry.example.com/mirror/apache/kafka:4.2.0");
+         case "mongo"    -> Optional.of("registry.example.com/mirror/mongo:8.2-alpine");
          case "postgres" -> Optional.of("registry.example.com/mirror/postgres:18.3-alpine");
-         default -> Optional.empty();
+         default         -> Optional.empty();
        };
      }
    }
    ```
 
-2. Register the implementation.
+2. Register the implementation via the standard `ServiceLoader` mechanism.
 
-   Create the file `src/test/resources/META-INF/services/io.github.malczuuu.checkmate.spi.ImageNamePlugin`
-   with the fully-qualified class name of your implementation:
+   Create `src/test/resources/META-INF/services/io.github.malczuuu.checkmate.spi.ImageNamePlugin` containing the FQCN:
 
    ```
    com.example.MirrorRegistryPlugin
    ```
+
+The loader is a lazy singleton: plugins are discovered once on first access and the resolved image names are cached per
+service key. If you register multiple plugins for the same service, the one with the **lowest** value in `getPriority()`
+takes precedence.
 
 ## `checkmate-spring-kafka`
 
