@@ -2,6 +2,7 @@ package io.github.malczuuu.checkmate.spring.kafka;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -14,6 +15,7 @@ import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
  * reliable test execution.
  */
 @AutoConfiguration
+@ConditionalOnClass(KafkaListenerEndpointRegistry.class)
 public final class KafkaTestAutoConfiguration {
 
   /**
