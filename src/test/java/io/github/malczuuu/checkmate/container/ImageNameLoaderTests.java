@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 class ImageNameLoaderTests {
 
   @Test
-  void givenKafkaAndMultiplePlugins_whenGetImageName_thenUsesHighestPriorityPlugin() {
-    String image = ImageNameLoader.getImageName("kafka", "apache/kafka:latest");
-    assertEquals("custom/kafka:b", image);
+  void givenServiceWithMultiplePlugins_whenGetImageName_thenUsesHighestPriorityPlugin() {
+    String image = ImageNameLoader.getImageName("svc-alpha", "default/alpha:latest");
+    assertEquals("custom/alpha:b", image);
   }
 
   @Test
@@ -22,19 +22,19 @@ class ImageNameLoaderTests {
 
   @Test
   void givenDifferentServices_whenGetImageName_thenReturnProperValues() {
-    String kafka = ImageNameLoader.getImageName("kafka", "kafka:default");
-    String postgres = ImageNameLoader.getImageName("postgres", "postgres:default");
-    String redis = ImageNameLoader.getImageName("redis", "redis:default");
+    String alpha = ImageNameLoader.getImageName("svc-alpha", "default/alpha:latest");
+    String beta = ImageNameLoader.getImageName("svc-beta", "default/beta:latest");
+    String gamma = ImageNameLoader.getImageName("svc-gamma", "default/gamma:latest");
 
-    assertEquals("custom/kafka:b", kafka);
-    assertEquals("custom/postgres:b", postgres);
-    assertEquals("custom/redis:c", redis);
+    assertEquals("custom/alpha:b", alpha);
+    assertEquals("custom/beta:b", beta);
+    assertEquals("custom/gamma:c", gamma);
   }
 
   @Test
   void givenCachedValue_whenGetImageNameAgain_thenReturnsCachedValue() {
-    String first = ImageNameLoader.getImageName("kafka", "kafka:default");
-    String second = ImageNameLoader.getImageName("kafka", "kafka:other");
+    String first = ImageNameLoader.getImageName("svc-alpha", "default/alpha:latest");
+    String second = ImageNameLoader.getImageName("svc-alpha", "default/alpha:other");
     assertNotNull(first);
     assertEquals(first, second);
   }

@@ -9,8 +9,8 @@ public class PluginNo2 implements ImageNamePlugin {
 
   @Override
   public Optional<String> getImageName(String service) {
-    if ("redis".equals(service)) {
-      return Optional.of("custom/redis:c");
+    if ("svc-gamma".equals(service)) {
+      return Optional.of("custom/gamma:c");
     }
     return Optional.empty();
   }

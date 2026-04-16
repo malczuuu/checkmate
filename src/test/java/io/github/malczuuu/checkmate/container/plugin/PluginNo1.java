@@ -9,11 +9,11 @@ public class PluginNo1 implements ImageNamePlugin {
 
   @Override
   public Optional<String> getImageName(String service) {
-    if ("kafka".equals(service)) {
-      return Optional.of("custom/kafka:b");
+    if ("svc-alpha".equals(service)) {
+      return Optional.of("custom/alpha:b");
     }
-    if ("postgres".equals(service)) {
-      return Optional.of("custom/postgres:b");
+    if ("svc-beta".equals(service)) {
+      return Optional.of("custom/beta:b");
     }
     return Optional.empty();
   }
