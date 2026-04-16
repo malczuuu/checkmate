@@ -1,6 +1,6 @@
 package io.github.malczuuu.checkmate.container.plugin;
 
-import io.github.malczuuu.checkmate.spi.ImageNamePlugin;
+import io.github.malczuuu.checkmate.container.spi.ImageNamePlugin;
 import java.util.Optional;
 import org.jspecify.annotations.NullMarked;
 

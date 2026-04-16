@@ -1,4 +1,4 @@
-package io.github.malczuuu.checkmate.spi;
+package io.github.malczuuu.checkmate.container.spi;
 
 import java.util.Optional;
 

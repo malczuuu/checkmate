@@ -16,7 +16,6 @@ independently consumable and covers a distinct concern:
 - [`checkmate-annotation`](#checkmate-annotation)
 - [`checkmate-archunit`](#checkmate-archunit)
 - [`checkmate-container`](#checkmate-container)
-- [`checkmate-spi`](#checkmate-spi)
 - [`checkmate-spring-kafka`](#checkmate-spring-kafka)
 
 ## Getting Started
@@ -52,7 +51,6 @@ dependencies {
     testImplementation("io.github.malczuuu:checkmate-annotation:0.0.6")
     testImplementation("io.github.malczuuu:checkmate-archunit:0.0.6")
     testImplementation("io.github.malczuuu:checkmate-container:0.0.6")
-    testImplementation("io.github.malczuuu:checkmate-spi:0.0.6")
     testImplementation("io.github.malczuuu:checkmate-spring-kafka:0.0.6")
 }
 ```
@@ -116,13 +114,7 @@ Boot test class is enough for Spring auto-configuration to pick up the container
 Container-gated tests must be tagged with `@ContainerTest` (from `checkmate-annotation`).
 
 By default, the interfaces above use the image names shown in the table. Image resolution can be overridden via the
-`ImageNamePlugin` SPI - see [`checkmate-spi`](#checkmate-spi).
-
-## `checkmate-spi`
-
-Defines the `ImageNamePlugin` SPI that allows consumer projects to override the Docker image name used by
-`checkmate-container` interfaces. Typical use cases include pulling from a private registry mirror or pinning a
-different image version without forking the library.
+`ImageNamePlugin` SPI (`io.github.malczuuu.checkmate.container.spi.ImageNamePlugin`).
 
 1. Implement the interface in your test sources.
 
@@ -143,7 +135,7 @@ different image version without forking the library.
 
 2. Register the implementation via the standard `ServiceLoader` mechanism.
 
-   Create `src/test/resources/META-INF/services/io.github.malczuuu.checkmate.spi.ImageNamePlugin` containing the FQCN:
+   Create `src/test/resources/META-INF/services/io.github.malczuuu.checkmate.container.spi.ImageNamePlugin` containing the FQCN:
 
    ```
    com.example.MirrorRegistryPlugin
