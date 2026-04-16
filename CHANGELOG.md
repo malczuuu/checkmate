@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 ## [Unreleased]
 
+## [0.0.7] - 2027-04-16
+
+### Changed
+
+- Collapse submodules into a single `checkmate` module.
+
 ## [0.0.6] - 2026-03-25
 
 ### Added
