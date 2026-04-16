@@ -1,35 +1,45 @@
 import com.diffplug.spotless.LineEnding
 
 plugins {
-    id("internal.common-convention")
+    id("internal.errorprone-convention")
     id("internal.idea-convention")
-    id("jacoco-report-aggregation")
-    id("test-report-aggregation")
+    id("internal.jacoco-convention")
+    id("internal.java-library-convention")
+    id("internal.publishing-convention")
     alias(libs.plugins.spotless)
 }
 
 dependencies {
-    jacocoAggregation(project(":checkmate-annotation"))
-    jacocoAggregation(project(":checkmate-archunit"))
-    jacocoAggregation(project(":checkmate-container"))
-    jacocoAggregation(project(":checkmate-spring-kafka"))
+    annotationProcessor(libs.spring.boot.configuration.processor)
 
-    testReportAggregation(project(":checkmate-annotation"))
-    testReportAggregation(project(":checkmate-archunit"))
-    testReportAggregation(project(":checkmate-container"))
-    testReportAggregation(project(":checkmate-spring-kafka"))
-}
+    api(libs.jspecify)
 
-reporting {
-    reports {
-        register<JacocoCoverageReport>("testCodeCoverageReport") {
-            testSuiteName = "test"
-        }
+    compileOnly(libs.archunit)
+    compileOnly(libs.junit.jupiter)
+    compileOnly(libs.kafka.clients)
+    compileOnly(libs.spring.boot.starter.kafka)
+    compileOnly(libs.spring.boot.starter.test)
+    compileOnly(libs.spring.boot.testcontainers)
+    compileOnly(libs.testcontainers.junit.jupiter)
+    compileOnly(libs.testcontainers.kafka)
+    compileOnly(libs.testcontainers.mongodb)
+    compileOnly(libs.testcontainers.postgresql)
 
-        register<AggregateTestReport>("testAggregateTestReport") {
-            testSuiteName = "test"
-        }
-    }
+    testImplementation(libs.archunit)
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.kafka.clients)
+    testImplementation(libs.spring.boot.starter.jackson)
+    testImplementation(libs.spring.boot.starter.kafka)
+    testImplementation(libs.spring.boot.starter.test)
+    testImplementation(libs.spring.boot.testcontainers)
+    testImplementation(libs.testcontainers.junit.jupiter)
+    testImplementation(libs.testcontainers.kafka)
+    testImplementation(libs.testcontainers.postgresql)
+
+    testRuntimeOnly(libs.junit.platform.launcher)
+
+    errorprone(libs.errorprone.core)
+    errorprone(libs.nullaway)
 }
 
 spotless {
@@ -81,11 +91,6 @@ spotless {
         endWithNewline()
         lineEndings = LineEnding.UNIX
     }
-}
-
-tasks.named<Task>("check") {
-    dependsOn(tasks.named<JacocoReport>("testCodeCoverageReport"))
-    dependsOn(tasks.named<TestReport>("testAggregateTestReport"))
 }
 
 defaultTasks("spotlessApply", "build")

@@ -2,12 +2,13 @@
 
 ## Quick orientation
 
-Multi-module test toolkit for Spring Boot projects.
+Single-module test toolkit for Spring Boot projects. All source lives under `src/` in the root project.
 
-- `:checkmate-archunit` defines shared architecture rules.
-- `:checkmate-annotation` exposes marker annotations used by other modules.
-- `:checkmate-container` exposes reusable Testcontainers interfaces.
-- `:checkmate-spring-kafka` provides extensions for Spring test context with Kafka.
+- `io.github.malczuuu.checkmate.annotation` exposes marker annotations.
+- `io.github.malczuuu.checkmate.archunit` defines shared architecture rules.
+- `io.github.malczuuu.checkmate.container` exposes reusable Testcontainers interfaces.
+- `io.github.malczuuu.checkmate.spi` defines the `ImageNamePlugin` SPI for overriding container image names.
+- `io.github.malczuuu.checkmate.spring.kafka` provides extensions for Spring test context with Kafka.
 
 ## Build and test workflows
 
@@ -18,7 +19,7 @@ Multi-module test toolkit for Spring Boot projects.
 
 ## Project-specific conventions to follow
 
-- Test classes with `@Test`/`@ArchTest` must end with `Tests` (enforced by ArchUnit in each module test suite).
+- Test classes with `@Test`/`@ArchTest` must end with `Tests` (enforced by ArchUnit in the test suite).
 - Container-gated tests use `@ContainerTest` tag (`testcontainers`); tag exclusion is automatic when disabled.
 - Each package has `package-info.java` with a description and `@NullMarked` annotation for JSpecify integration.
 - Test method names should follow the givenThis_whenThis_thenThis convention (e.g. `givenX_whenY_thenZ`) to keep tests
@@ -27,4 +28,4 @@ Multi-module test toolkit for Spring Boot projects.
 ## Integration points and dependencies
 
 - Manage dependencies centrally in `libs.versions.toml`.
-- Manage containers image versions in `:checkmate-container` module.
+- Container image versions are defined in the `*AwareTest` interfaces in `io.github.malczuuu.checkmate.container`.

@@ -1,7 +1,6 @@
-# Checkmate Project
+# Checkmate
 
-A multi-module toolkit that provides reusable test utilities for Java and Kotlin Spring Boot projects. Each module is
-independently consumable and covers a distinct concern:
+A single-module test toolkit that provides reusable test utilities for Java and Kotlin Spring Boot projects, covering:
 
 - shared architecture rules,
 - marker annotations,
@@ -13,14 +12,14 @@ independently consumable and covers a distinct concern:
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [`checkmate-annotation`](#checkmate-annotation)
-- [`checkmate-archunit`](#checkmate-archunit)
-- [`checkmate-container`](#checkmate-container)
-- [`checkmate-spring-kafka`](#checkmate-spring-kafka)
+- [Annotations](#annotations)
+- [ArchUnit rules](#archunit-rules)
+- [Testcontainers](#testcontainers)
+- [Spring Kafka](#spring-kafka)
 
 ## Getting Started
 
-Project is not published to a public repository. To access the module, generate a GitHub personal access token with
+Project is not published to a public repository. To access it, generate a GitHub personal access token with
 `read:packages` scope and configure your Gradle project as follows. Browse https://github.com/settings/tokens to create
 a new token.
 
@@ -48,10 +47,7 @@ repositories {
 
 // verify CHANGELOG.md for latest version
 dependencies {
-    testImplementation("io.github.malczuuu:checkmate-annotation:0.0.6")
-    testImplementation("io.github.malczuuu:checkmate-archunit:0.0.6")
-    testImplementation("io.github.malczuuu:checkmate-container:0.0.6")
-    testImplementation("io.github.malczuuu:checkmate-spring-kafka:0.0.6")
+    testImplementation("io.github.malczuuu:checkmate:0.0.6")
 }
 ```
 
@@ -85,25 +81,25 @@ internal class OrderProcessingTests : KafkaAwareTest {
 }
 ```
 
-## `checkmate-annotation`
+## Annotations
 
-Marker annotations used across the other modules and by consumer projects.
+Marker annotations in `io.github.malczuuu.checkmate.annotation`.
 
 | Annotation       | Target | Purpose                                                                                                                                       |
 |------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------|
 | `@ContainerTest` | class  | Applies the `testcontainers` JUnit tag so container-backed tests can be included/excluded from a build via `-Pcontainers.enabled`.            |
 | `@TestListener`  | field  | Declares a field as a consumer of a messaging destination. The framework wires the appropriate consumer bean and injects it before each test. |
 
-## `checkmate-archunit`
+## ArchUnit rules
 
-Shared [ArchUnit](https://www.archunit.org/) rules that can be imported into any module's test suite to enforce
-project-wide conventions.
+Shared [ArchUnit](https://www.archunit.org/) rules in `io.github.malczuuu.checkmate.archunit` that can be imported into
+any test suite to enforce project-wide conventions.
 
-## `checkmate-container`
+## Testcontainers
 
-Interfaces that expose pre-configured, shared Testcontainer singletons. Implementing one of these interfaces in a Spring
-Boot test class is enough for Spring auto-configuration to pick up the container's connection details via
-`@ServiceConnection`.
+Interfaces in `io.github.malczuuu.checkmate.container` that expose pre-configured, shared Testcontainer singletons.
+Implementing one of these interfaces in a Spring Boot test class is enough for Spring auto-configuration to pick up the
+container's connection details via `@ServiceConnection`.
 
 | Interface           | Container image        |
 |---------------------|------------------------|
@@ -111,10 +107,10 @@ Boot test class is enough for Spring auto-configuration to pick up the container
 | `MongoAwareTest`    | `mongo:8.2-alpine`     |
 | `PostgresAwareTest` | `postgres:18.3-alpine` |
 
-Container-gated tests must be tagged with `@ContainerTest` (from `checkmate-annotation`).
+Container-gated tests must be tagged with `@ContainerTest`.
 
 By default, the interfaces above use the image names shown in the table. Image resolution can be overridden via the
-`ImageNamePlugin` SPI (`io.github.malczuuu.checkmate.container.spi.ImageNamePlugin`).
+`ImageNamePlugin` SPI (`io.github.malczuuu.checkmate.spi.ImageNamePlugin`).
 
 1. Implement the interface in your test sources.
 
@@ -135,7 +131,7 @@ By default, the interfaces above use the image names shown in the table. Image r
 
 2. Register the implementation via the standard `ServiceLoader` mechanism.
 
-   Create `src/test/resources/META-INF/services/io.github.malczuuu.checkmate.container.spi.ImageNamePlugin` containing the FQCN:
+   Create `src/test/resources/META-INF/services/io.github.malczuuu.checkmate.spi.ImageNamePlugin` containing the FQCN:
 
    ```
    com.example.MirrorRegistryPlugin
@@ -145,9 +141,10 @@ The loader is a lazy singleton: plugins are discovered once on first access and 
 service key. If you register multiple plugins for the same service, the one with the **lowest** value in `getPriority()`
 takes precedence.
 
-## `checkmate-spring-kafka`
+## Spring Kafka
 
-Extensions for the Spring test context that automate the setup of in-process Kafka consumers during integration tests.
+Extensions in `io.github.malczuuu.checkmate.spring.kafka` for the Spring test context that automate the setup of
+in-process Kafka consumers during integration tests.
 
 - **`TestKafkaConsumer`** - interface for polling and draining a Kafka topic from test code.
 - **`@TestListener`** - annotate a `TestKafkaConsumer` field in your test class with the target
