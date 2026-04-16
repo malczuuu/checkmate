@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog][keepachangelog], and this project adhe
 
 ## [Unreleased]
 
+## [0.0.8] - 2027-04-16
+
+### Fixed
+
+- Add `@ConditionalOnClass(KafkaListenerEndpointRegistry.class)`.
+
 ## [0.0.7] - 2027-04-16
 
 ### Changed
